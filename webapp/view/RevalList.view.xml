@@ -1,0 +1,124 @@
+<mvc:View
+    controllerName="zfi.zfirevalrecon.controller.RevalList"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:rowmodes="sap.ui.table.rowmodes"
+    xmlns:table="sap.ui.table"
+    xmlns:macros="sap.fe.macros"
+    xmlns:core="sap.ui.core"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:smartVariantManagement="sap.ui.comp.smartvariants"
+    xmlns:f="sap.f"
+    displayBlock="true"
+>
+    <f:DynamicPage
+        id="dynamicPageId"
+        headerExpanded="true"
+        toggleHeaderOnTitleClick="false"
+    >
+        <!-- Dynamic Page Title -->
+        <f:title>
+            <f:DynamicPageTitle id="dynamicPageTitle">
+                <f:heading>
+                    <Title
+                        id="pageTitle"
+                        text="{i18n>title}"
+                        level="H2"
+                    />
+                </f:heading>
+                <f:actions>
+                    <smartVariantManagement:SmartVariantManagement
+                        id="smartVariantManagement"
+                        showExecuteOnSelection="true"
+                        showShare="true"
+                        persistencyKey="RevalListVariant"
+                    />
+                </f:actions>
+            </f:DynamicPageTitle>
+        </f:title>
+
+        <!-- Dynamic Page Header -->
+        <f:header>
+            <f:DynamicPageHeader
+                id="dynamicPageHeader"
+                pinnable="true"
+            >
+                <f:content>
+                    <smartFilterBar:SmartFilterBar
+                        id="smartFilterBar"
+                        entitySet="RevaluationReportSet"
+                        persistencyKey="RevalListFilterBar"
+                        enableBasicSearch="true"
+                        showClearOnFB="true"
+                        showRestoreOnFB="true"
+                        showGoOnFB="true"
+                        search="onSearch"
+                        filterChange="onFilterChange"
+                    >
+                        <!-- <smartFilterBar:controlConfiguration>
+                            <smartFilterBar:ControlConfiguration
+                                id="filterCompanyCode"
+                                key="CompanyCode"
+                                visibleInAdvancedArea="true"
+                                preventInitialDataFetchInValueHelpDialog="false"
+                                index="1" />
+                            <smartFilterBar:ControlConfiguration
+                                id="filterLedger"
+                                key="Ledger"
+                                visibleInAdvancedArea="true"
+                                mandatory="mandatory"
+                                index="2" />
+                            <smartFilterBar:ControlConfiguration
+                                id="filterPostingDate"
+                                key="PostingDate"
+                                visibleInAdvancedArea="true"
+                                index="3" />
+                        </smartFilterBar:controlConfiguration> -->
+                    </smartFilterBar:SmartFilterBar>
+                </f:content>
+            </f:DynamicPageHeader>
+        </f:header>
+
+        <!-- Dynamic Page Content -->
+        <f:content>
+            <smartTable:SmartTable
+                id="revalReconSmartTable"
+                entitySet="RevaluationReportSet"
+                smartFilterId="smartFilterBar"
+                tableType="ResponsiveTable"
+                enableExport="true"
+                enableAutoColumnWidth="true"
+                useVariantManagement="true"
+                useTablePersonalisation="true"
+                header="Revaluation Reconciliation Report"
+                showRowCount="true"
+                persistencyKey="RevalListSmartTable"
+                enableAutoBinding="false"
+                requestAtLeastFields="RecordID,CompanyCode,PostingDate"
+                ignoreFromPersonalisation="p_keydate"
+                demandPopin="true"
+                initialise="onSmartTableInitialise"
+                beforeRebindTable="onBeforeRebindTable"
+                class="sapUiResponsiveContentPadding"
+                initiallyVisibleFields="CompanyCode,GLAccount,TransactionAmount,FunctionalAmount,ActualRevalAmount,DifferenceAmount,WithinTolerance"
+            >
+                <!-- <smartTable:customToolbar>
+                    <OverflowToolbar id="customToolbar" design="Transparent">
+                        <ToolbarSpacer id="toolbarSpacer" />
+                        <Button
+                            id="exportButton"
+                            text="Export"
+                            press="onExport"
+                            icon="sap-icon://excel-attachment" />
+                        <Button
+                            id="refreshButton"
+                            text="Refresh"
+                            press="onRefresh"
+                            icon="sap-icon://refresh" />
+                    </OverflowToolbar>
+                </smartTable:customToolbar> -->
+            </smartTable:SmartTable>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

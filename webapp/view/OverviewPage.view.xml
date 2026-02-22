@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form"
+    controllerName="zfi.zfirevalrecon.controller.OverviewPage"
+>
+	<Page title="Overview" id="OverviewPage">
+        <content>
+            <VBox id="overviewVBox" class="sapUiSmallMargin">
+                <Button id="goToRevaluationListButton" text="Go to Revaluation List" press="onNavigateToRevalList" class="sapUiSmallMarginBottom" />
+
+                <Panel id="generalInfoPanel" headerText="General Info">
+                    <content>
+                        <form:SimpleForm id="generalInfoForm" editable="false" layout="ResponsiveGridLayout">
+                            <Label id="lblLedger" text="Ledger" />
+                            <Text id="txtLedger" text="{Ledger}" />
+
+                            <Label id="lblCompanyCode" text="Company Code" />
+                            <Text id="txtCompanyCode" text="{CompanyCode}" />
+
+                            <Label id="lblGLAccount" text="G/L Account" />
+                            <Text id="txtGLAccount" text="{GLAccount}" />
+
+                            <Label id="lblBSAdjAccount" text="BS Adjustment Account" />
+                            <Text id="txtBSAdjAccount" text="{BSAdjustmentAccount}" />
+
+                            <Label id="lblCurrencyType" text="Currency Type" />
+                            <Text id="txtCurrencyType" text="{currencytype}" />
+
+                            <Label id="lblWithinTolerance" text="Within Tolerance" />
+                            <Text id="txtWithinTolerance" text="{WithinTolerance}" />
+
+                            <Label id="lblComments" text="Comments" />
+                            <Text id="txtComments" text="{Comments}" wrapping="true" />
+                        </form:SimpleForm>
+                    </content>
+                </Panel>
+
+                <Panel id="revaluationInfoPanel" headerText="Revaluation Info" class="sapUiSmallMarginTop">
+                    <content>
+                        <form:SimpleForm id="revaluationInfoForm" editable="false" layout="ResponsiveGridLayout">
+                            <Label id="lblTransactionAmount" text="Transaction Amount" />
+                            <ObjectNumber id="objTransactionAmount" number="{TransactionAmount}" unit="{TransactionCurrency}" />
+
+                            <Label id="lblFunctionalAmount" text="Functional Amount" />
+                            <ObjectNumber id="objFunctionalAmount" number="{FunctionalAmount}" unit="{FunctionalCurrency}" />
+
+                            <Label id="lblCalcOpenFuncAmount" text="Calculated Open Func Amount" />
+                            <ObjectNumber id="objCalcOpenFuncAmount" number="{CalcOpenFuncAmount}" unit="{FunctionalCurrency}" />
+
+                            <Label id="lblDiffOpenFuncAmount" text="Diff Open Func Amount" />
+                            <ObjectNumber id="objDiffOpenFuncAmount" number="{DiffOpenFuncAmount}" unit="{FunctionalCurrency}" />
+
+                            <Label id="lblActualRevalAmount" text="Actual Reval Amount" />
+                            <ObjectNumber id="objActualRevalAmount" number="{ActualRevalAmount}" unit="{ActualRevalCurrency}" />
+
+                            <Label id="lblPreFXJournalAmount" text="Pre-FX Journal Amount" />
+                            <ObjectNumber id="objPreFXJournalAmount" number="{PreFXJournalAmount}" unit="{FunctionalCurrency}" />
+
+                            <Label id="lblExchangeRate" text="Exchange Rate" />
+                            <Text id="txtExchangeRate" text="{ExchangeRate}" />
+                        </form:SimpleForm>
+                    </content>
+                </Panel>
+            </VBox>
+        </content>
+	</Page>
+</mvc:View>
